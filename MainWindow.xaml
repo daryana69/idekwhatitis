@@ -1,0 +1,18 @@
+﻿<Window x:Class="_17marNEW.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_17marNEW"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:TrainsDataSet x:Key="trainsDataSet"/>
+        <CollectionViewSource x:Key="bookingViewSource" Source="{Binding Booking, Source={StaticResource trainsDataSet}}"/>
+        <CollectionViewSource x:Key="scheduleViewSource" Source="{Binding Schedule, Source={StaticResource trainsDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource bookingViewSource}">
+        <DataGrid HorizontalAlignment="Left" Height="100" Margin="218,157,0,0" VerticalAlignment="Top" Width="357" ItemsSource="{Binding Source={StaticResource scheduleViewSource}}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="346,322,0,0" VerticalAlignment="Top" Width="120" DisplayMemberPath="StationID" ItemsSource="{Binding Source={StaticResource scheduleViewSource}}"/>
+    </Grid>
+</Window>
